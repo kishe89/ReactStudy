@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2단원 Property에 익숙해지기</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        var Component = React.createClass({
+            propTypes:{
+                firstName:React.PropTypes.string.isRequired,
+                middleName:React.PropTypes.string,
+                familyName:React.PropTypes.string.isRequired,
+                address:React.PropTypes.string,
+            },
+            getDefaultProps:function () {
+                return {
+                    middleName:'',
+                    address:'n/a',
+                };
+            },
+            render:function () {
+                return React.DOM.span(null,""+this.props.firstName+"\t"+this.props.middleName+
+                        this.props.familyName+"'s home address is "+this.props.address);
+            }
+        });
+        ReactDOM.render(
+                React.createElement(Component,{
+
+                }),
+                document.getElementById('root')
+        );
+        ReactDOM.render(
+                React.createElement(Component,{
+                    firstName:"김",
+                    middleName:"지운",
+                    address:"전라남도 순천시 매곡동 매곡2단지 아파트 110동 307호",
+                }),
+                document.getElementById('exist_param')
+        );
+        console.log(React.PropTypes);
+        ReactDOM.render(
+                React.DOM.h1(null,"Component들의 getDefaultProps()는 선택적 프로퍼티에 유효한 값을 제공하는 객체를 반환하는 곳으로 유효한값들을 정의해야한다."),
+                document.getElementById('props_description')
+        );
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            console.log(Component);
+        };
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <div id="exist_param"></div>
+    <div id="props_description"></div>
+</body>
+</html>

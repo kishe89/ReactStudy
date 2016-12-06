@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2단원 컴포넌트 생성 및 컴포넌트 팩토리</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel">
+        var Component = React.createClass({
+            render: function () {
+                return React.DOM.span(null,"I'm so custom");
+            }
+        });
+        var ComponentFactory = React.createFactory(Component);
+
+        var Component_Div = React.createClass({
+            render: function () {
+                return React.DOM.div(null,ComponentFactory());
+            }
+        });
+        var Component_Div_Factory = React.createFactory(Component_Div);
+        ReactDOM.render(
+            React.DOM.h1(null,"HELLO ",React.createElement(Component)),
+                document.getElementById('root')
+        );
+        ReactDOM.render(
+                ComponentFactory(),
+                document.getElementById('factory instance1')
+        );
+        ReactDOM.render(
+                Component_Div_Factory(),
+                document.getElementById('factory instance2')
+        );
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <div id="factory instance1"></div>
+    <div id="factory instance2"></div>
+</body>
+</html>

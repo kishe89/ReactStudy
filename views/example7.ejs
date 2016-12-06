@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2단원 상태 저장 텍스트 영역 컴포넌트</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        var TextAreaCounter = React.createClass({
+            propTypes:{
+                text:React.PropTypes.string,
+            },
+            getDefaultProps:function () {
+                return {text:'',};
+            },
+            getInitialState:function () {
+                return {text:this.props.text,}
+            },
+            _textChange:function (ev) {
+                this.setState({
+                    text:ev.target.value,
+                });
+            },
+            render:function () {
+                return React.DOM.div(null,React.DOM.textarea({
+                    value:this.state.text,
+                    onChange:this._textChange,
+                }),
+                        React.DOM.h3(null,this.state.text.length)
+                );
+            }
+        });
+
+        var TextAreaFactory = React.createFactory(TextAreaCounter);
+        ReactDOM.render(
+                React.createElement(TextAreaCounter,{
+                    text:"Bob",
+                }),
+                document.getElementById("root")
+        );
+        ReactDOM.render(
+                TextAreaFactory(),
+                document.getElementById("sub")
+        );
+        ReactDOM.render(
+                TextAreaFactory(),
+                document.getElementById("sss")
+        );
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <div id="sub"></div>
+    <div id="sss"></div>
+</body>
+</html>

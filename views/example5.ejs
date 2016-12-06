@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2단원 Component의 Property</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        var Component = React.createClass({
+            render : function () {
+                return React.DOM.span(null,"My name is " + this.props.name + this.props.grade);
+            }
+        });
+        var Require_ComponentDirect = React.createClass({
+            propTypes:{
+                name: React.PropTypes.string.isRequired,
+                grade:React.PropTypes.string,
+            },
+            render:function () {
+                return React.DOM.span(null,"My name is " + this.props.name + this.props.grade);
+            }
+        });
+        var Require_Component = React.createClass({
+            render:function () {
+                return React.DOM.span(null,"My name is " + this.props.name + this.props.grade);
+            }
+        });
+        Require_Component.propTypes = {
+            name: React.PropTypes.string.isRequired,
+            grade:React.PropTypes.string
+        };
+        ReactDOM.render(
+                React.createElement(Component,{
+                    name : "김지운",
+                    grade : "짱짱맨",
+                }),
+                document.getElementById('root')
+        );
+        ReactDOM.render(
+                React.createElement(Require_Component,{
+                    name:"필요한 프로퍼티입니다.",
+                }),
+                document.getElementById('requiredComponent')
+        );
+        ReactDOM.render(
+                React.createElement(Require_ComponentDirect,{
+                    name:1,
+                    grade:"짱짱짱",
+                }),
+                document.getElementById('unsetName')
+        );
+        ReactDOM.render(
+                React.createElement(Require_ComponentDirect,{
+                    name:"로그를 보세요",
+                    grade:"짱짱짱",
+                }),
+                document.getElementById('log')
+        );
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <div id="requiredComponent"></div>
+    <div id="unsetName"></div>
+    <div id="log"></div>
+</body>
+</html>
